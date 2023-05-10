@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Username and Password Form</title>
+	<style>
+		table {
+		margin-top: 100px;
+		background-color: lightgrey;
+  		border: 1px solid black;
+  		border-collapse: separate;
+  		border-spacing: 10px;
+		border-radius: 5%;
+		}
+
+		th, td {
+		  padding: 10px;
+		  
+		}
+		input{
+			width: 300px;
+        	height: 50px;
+		}
+		button{
+			width: 300px;
+        	height: 50px;
+			background-color: brown;
+			color: white;
+		}
+	  </style>
+</head>
+<body>
+	<center>
+	<table  >
+	<form method="post" action="submit.php" >
+		<tr><th colspan="2">ENTER THE DETAILS</th></tr>
+		<tr>
+		<th><input type="text" name="name" id="name" required placeholder="Enter the register number"></th></tr>
+		<tr>
+		<th><input type="text" name="pass" id="pass" required placeholder="Enter your birth date" onfocus="(this.type='date')" onblur="(this.type='text')"></th>
+		</tr>
+		<tr>
+		<th colspan="2"><button type="submit">SUBMIT</button></th>
+	</tr>
+	<tr><th colspan="2"><a href="index.html">Back</a></th></tr>
+	</form>
+</table>
+	<script src="validate.js"></script>
+</center>
+</body>
+</html>

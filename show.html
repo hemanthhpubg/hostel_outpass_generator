@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+    table {
+      margin-top: 50px;
+      background-color: lightgrey;
+        border: 1px solid black;
+        border-collapse: separate;
+        border-spacing: 10px;
+        border-radius: 5%;
+      }
+  
+      th, td {
+        padding: 10px;
+        
+      }
+      input{
+        width: 350px;
+          height: 50px;
+      }
+      button{
+        width: 350px;
+        height: 50px;
+        background-color: brown;
+        color: white;
+      }
+    </style>
+</head>
+<body>
+  <center>
+  <table>
+    <tr><th >FILL THE DETAILS</th></tr>
+    <form method="POST" action="ms.php">
+      <tr><th><input type="text" id="fromd" name="fromd" oninput="calculateDays()" required placeholder="Enter the Start Date" onfocus="(this.type='date')" onblur="(this.type='text')"></th></tr>
+      <tr><th><input type="text" id="tod" name="tod" oninput="calculateDays()" required required placeholder="Enter the End Date" onfocus="(this.type='date')" onblur="(this.type='text')"></th></tr>
+      <tr><th><input type="text" id="days" name="days" readonly placeholder="Enter the number of days proposed to stay"></th></tr>
+      <tr><th><input type="text" id="dest" name="dest" required placeholder="Enter the destination"></th></tr>
+      <tr><th><input type="text" id="reason" name="reason" required placeholder="Enter the reason for stay"></th></tr>
+      <tr><th><button type="submit" value="Submit" onclick="calculateDays()">SUBMIT</button></th></tr>   
+      </form>
+        
+    <form method="POST" action="studentstat.php">
+      <tr><th style=" padding: 0px;"><button style="margin-top: 5px;border:none;background-color:lightgray;color:black;text-decoration: underline;color:black;font-family:Times New Roman" type="submit"><b>SHOW THE OUTPASS STATUS</b></button></th></tr> 
+          
+    </form>
+    <tr><th ><a href="index.html">Back</a></th></tr>   
+  </table>
+
+</center>
+      <script>
+      function calculateDays() {
+        var startDate = document.getElementById("fromd").value;
+        var endDate = document.getElementById("tod").value;
+          
+        if (startDate && endDate) { // Check if both dates are entered
+          var oneDay = 24*60*60*1000; // Number of milliseconds in a day
+            
+          // Split the date values and create Date objects
+          var startComponents = startDate.split('-');
+          var endComponents = endDate.split('-');
+          var start = Date.UTC(startComponents[0], startComponents[1] - 1, startComponents[2]);
+          var end = Date.UTC(endComponents[0], endComponents[1] - 1, endComponents[2]);
+      
+          var diffDays = Math.round(Math.abs((start - end) / oneDay));
+          if (start > end) { // Check if "from" date is after "to" date
+            alert("Please enter a valid date range. The 'from' date should not be after the 'to' date.");
+            document.getElementById("fromd").value = "";
+            document.getElementById("tod").value = "";
+            document.getElementById("days").value = "";
+          } else {
+            document.getElementById("days").value = diffDays;
+          }
+        }
+      }
+      </script>
+      
+</body>
+</html>
